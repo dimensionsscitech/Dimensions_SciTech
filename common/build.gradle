@@ -70,4 +70,12 @@ dependencies {
     implementation 'com.hwangjr.rxbus:rxbus:1.0.6'
     implementation 'com.squareup.retrofit2:adapter-rxjava:2.0.2'
 
+
+    //XRecyclerview依赖
+    implementation 'com.jcodecraeer:xrecyclerview:1.5.9'
+    // fresco一般依赖：
+    implementation 'com.facebook.fresco:fresco:0.14.1'
+    // fresco如果需要支持gif，再添加：
+    implementation 'com.facebook.fresco:animated-gif:0.12.0'
+
 }
