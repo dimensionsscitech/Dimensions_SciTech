@@ -1,6 +1,7 @@
 package com.wd.community;
 
 import android.os.Bundle;
+import android.view.View;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.wd.common.baseFragment.BaseFragment;
@@ -22,7 +23,7 @@ public class CommunityFragment extends BaseFragment {
     }
 
     @Override
-    protected void initView(Bundle savedInstanceState) {
+    protected void initView(View view) {
 
     }
 
