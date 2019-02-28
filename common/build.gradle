@@ -72,10 +72,10 @@ dependencies {
 
 
     //XRecyclerview依赖
-    implementation 'com.jcodecraeer:xrecyclerview:1.5.9'
+    api 'com.jcodecraeer:xrecyclerview:1.5.9'
     // fresco一般依赖：
-    implementation 'com.facebook.fresco:fresco:0.14.1'
+    api 'com.facebook.fresco:fresco:0.14.1'
     // fresco如果需要支持gif，再添加：
-    implementation 'com.facebook.fresco:animated-gif:0.12.0'
+    api 'com.facebook.fresco:animated-gif:0.12.0'
 
 }
