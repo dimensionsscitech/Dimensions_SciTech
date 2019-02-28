@@ -1,14 +1,93 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-
-    <TextView
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <!--兴趣分类、标题、搜索-->
+    <RelativeLayout
+        android:id="@+id/layout_one"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_80"
+        android:background="#f2f2f2"
+        >
+        <Button
+            android:id="@+id/message_classification"
+            android:layout_width="@dimen/dp_24"
+            android:layout_height="@dimen/dp_24"
+            android:layout_marginLeft="@dimen/dp_12"
+            android:layout_marginTop="@dimen/dp_42"
+            android:background="@mipmap/home_nav_btn_menu"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/message_title"
+            android:textSize="@dimen/sp_20"
+            android:layout_marginLeft="@dimen/dp_160"
+            android:layout_marginTop="@dimen/dp_42"
+            />
+        <Button
+            android:id="@+id/message_search"
+            android:layout_width="@dimen/dp_24"
+            android:layout_height="@dimen/dp_24"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="@dimen/dp_42"
+            android:layout_marginRight="@dimen/dp_12"
+            android:background="@mipmap/common_nav_btn_search_n"
+            />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_2"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/message_view"
+            />
+    </RelativeLayout>
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="资讯"
-        android:textSize="@dimen/sp_30"
-        android:gravity="center"/>
+        android:layout_below="@id/layout_one"
+        android:background="#3ff"
+        >
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <RelativeLayout
+                android:id="@+id/layout_two"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:clipChildren="false"
+                android:layerType="software"
+                android:background="#f2f2f2"
+                >
+                <!--轮播图-->
+                <com.stx.xhb.xbanner.XBanner
+                    android:id="@+id/message_xbanner"
+                    android:layout_width="@dimen/dp_284"
+                    android:layout_height="@dimen/dp_137"
+                    android:layout_marginTop="@dimen/sp_20"
+                    android:layout_marginBottom="@dimen/dp_20"
+                    android:layout_centerHorizontal="true"
+                    app:AutoPlayTime="3000"
+                    app:isShowNumberIndicator="true"
+                    app:isShowIndicatorOnlyOne="false"
+                    clipChildrenLeftRightMargin="@dimen/dp_10"
+                    isClipChildrenMode="true"
+                    app:isShowTips="true"
+                    android:clipChildren="false"
+                    app:pageChangeDuration="800"
+                    android:background="#00f" />
+            </RelativeLayout>
+            <!--XRecyclerView-->
+            <com.jcodecraeer.xrecyclerview.XRecyclerView
+                android:id="@+id/message_xrecy"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/layout_two"
+                android:background="#f5c"
+                />
+
+        </RelativeLayout>
+    </ScrollView>
 
 </RelativeLayout>
