@@ -3,12 +3,62 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <RelativeLayout
+        android:id="@+id/re_one"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_80"
+        android:background="#e9e7e7"
+        >
 
-    <TextView
+        <LinearLayout
+            android:layout_width="@dimen/dp_188"
+            android:layout_height="30dp"
+            android:background="@drawable/shape_message_but"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/dp_38"
+            >
+
+            <RadioGroup
+                android:id="@+id/msg_group"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                >
+                <RadioButton
+                    android:id="@+id/msg_but_msg"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:button="@null"
+                    android:text="消息"
+                    android:textSize="@dimen/sp_20"
+                    android:gravity="center"
+                    android:layout_weight="1"
+                    android:background="@drawable/shape_message"
+                    />
+                <RadioButton
+                    android:id="@+id/msg_but_people"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:button="@null"
+                    android:text="联系人"
+                    android:checked="true"
+                    android:background="@drawable/shape_message"
+                    android:textSize="@dimen/sp_20"
+                    android:gravity="center"
+                    android:layout_weight="1"
+                    />
+
+            </RadioGroup>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/msg_pager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="消息"
-        android:textSize="@dimen/sp_30"
-        android:gravity="center"/>
+        android:layout_below="@id/re_one"
+        />
 
 </RelativeLayout>

@@ -1,9 +1,12 @@
 package com.wd.message;
 
 import android.os.Bundle;
+import android.view.View;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.wd.common.baseFragment.BaseFragment;
+
+import butterknife.ButterKnife;
 
 /**
  * @author : FangShiKang
@@ -12,17 +15,18 @@ import com.wd.common.baseFragment.BaseFragment;
  * desc :
  */
 
-
 @Route(path = "/message/MessageFragment")
 public class MessageFragment extends BaseFragment {
+
+
     @Override
     public int getLayoutId() {
         return R.layout.fragment_message;
     }
 
     @Override
-    protected void initView(Bundle savedInstanceState) {
-
+    protected void initView(View view) {
+        ButterKnife.bind(this,view);
     }
 
     @Override
