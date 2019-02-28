@@ -1,0 +1,1 @@
+include ':app', ':common', ':login', ':information', ':message', ':community', ':main'
