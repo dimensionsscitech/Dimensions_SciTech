@@ -34,6 +34,7 @@ public abstract class BaseFragment extends Fragment implements IView {
         //获取的是子Fragment的layout
         View view1=View.inflate(getActivity(),getLayoutId(),null);
         RelativeLayout mLayout=(RelativeLayout) view.findViewById(R.id.fragment_layout);
+        initView(view);
         mLayout.addView(view1);
         mMyPresenter = new IPersenter(this);
         return view;
@@ -44,7 +45,7 @@ public abstract class BaseFragment extends Fragment implements IView {
     public abstract int getLayoutId();
 
     //初始化控件
-    protected abstract void initView(Bundle savedInstanceState);
+    protected abstract void initView(View view);
 
     //实现方法,初始化数据
     public abstract void initData();
