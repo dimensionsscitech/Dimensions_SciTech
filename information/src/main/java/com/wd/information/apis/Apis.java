@@ -10,6 +10,7 @@ public class Apis {
      */
     //轮播图
     public static final String information_XBanner="information/v1/bannerShow";
-
+    //兴趣分类
+    public static final String fication_xrecycler="information/v1/findAllInfoPlate";
 
 }

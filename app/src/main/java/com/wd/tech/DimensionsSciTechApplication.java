@@ -4,9 +4,13 @@ import android.app.Application;
 import android.content.Context;
 import android.content.res.Configuration;
 import android.graphics.Point;
+import android.os.Environment;
 import android.view.WindowManager;
 
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.facebook.cache.disk.DiskCacheConfig;
+import com.facebook.drawee.backends.pipeline.Fresco;
+import com.facebook.imagepipeline.core.ImagePipelineConfig;
 import com.wd.common.utils.ContextUtils;
 
 /**
@@ -30,6 +34,21 @@ public class DimensionsSciTechApplication extends Application {
         ARouter.openDebug();   // 开启调试模式(如果在InstantRun模式下运行，必须开启调试模式！线上版本需要关闭,否则有安全风险)
         ARouter.init(this);
         ContextUtils.setApplication(this);
+        //Fresco:
+        //设置磁盘缓存（可以不要）
+        DiskCacheConfig diskCacheConfig = DiskCacheConfig.newBuilder(this)
+                //设置缓存的目录名字
+                .setBaseDirectoryName("images")
+                //设置缓存的路径
+                .setBaseDirectoryPath(Environment.getExternalStorageDirectory())
+                .build();
+        //设置磁盘缓存的配置，生成配置未见
+        ImagePipelineConfig config = ImagePipelineConfig.newBuilder(this)
+                .setMainDiskCacheConfig(diskCacheConfig)
+                .build();
+
+//必须！！！！
+        Fresco.initialize(this, config);
 
     }
 

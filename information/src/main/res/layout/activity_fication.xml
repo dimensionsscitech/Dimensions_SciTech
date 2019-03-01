@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".activity.FicationActivity">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/fication_title"
+        android:textSize="@dimen/sp_20"
+        android:textColor="@color/color_666"
+        android:layout_marginTop="@dimen/dp_40"
+        android:layout_marginLeft="@dimen/sp_20"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/fication_subtitle"
+        android:textSize="@dimen/sp_12"
+        android:textColor="@color/color_999"
+        android:layout_marginTop="@dimen/dp_10"
+        android:layout_marginLeft="@dimen/sp_20"
+        />
+
+    <com.jcodecraeer.xrecyclerview.XRecyclerView
+        android:id="@+id/ficationRecycler"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="@dimen/dp_20"
+        android:layout_marginTop="@dimen/dp_30"
+        android:layout_marginRight="@dimen/dp_20" />
+
+</LinearLayout>

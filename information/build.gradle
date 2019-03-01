@@ -15,7 +15,7 @@ android {
 
         javaCompileOptions {
             annotationProcessorOptions {
-                arguments = [ AROUTER_MODULE_NAME : project.getName() ]
+                arguments = [AROUTER_MODULE_NAME: project.getName()]
             }
         }
 
@@ -47,6 +47,7 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     implementation 'com.android.support:appcompat-v7:28.0.0'
+    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
@@ -58,10 +59,14 @@ dependencies {
     annotationProcessor 'com.alibaba:arouter-compiler:1.2.2'
 
     //Xbanner
-    implementation 'com.github.xiaohaibin:XBanner:1.6.1'
+    api 'com.github.xiaohaibin:XBanner:1.6.1'
     //glide依赖
-    implementation 'com.github.bumptech.glide:glide:4.8.0'
+    api 'com.github.bumptech.glide:glide:4.8.0'
     //tterknife
     api 'com.jakewharton:butterknife:8.8.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
+    //XRecyclerView
+    api 'com.jcodecraeer:xrecyclerview:1.5.9'
+    //fresco
+    api 'com.facebook.fresco:fresco:0.14.1'
 }

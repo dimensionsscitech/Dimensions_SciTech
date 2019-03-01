@@ -1,7 +1,12 @@
 package com.wd.information;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.OrientationHelper;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,7 +22,9 @@ import com.stx.xhb.xbanner.XBanner;
 import com.stx.xhb.xbanner.transformers.Transformer;
 import com.wd.common.baseFragment.BaseFragment;
 import com.wd.common.utils.ToastUtil;
+import com.wd.information.activity.FicationActivity;
 import com.wd.information.apis.Apis;
+import com.wd.information.apis.StringUntils;
 import com.wd.information.bean.XBannerBean;
 
 import java.util.ArrayList;
@@ -34,7 +41,7 @@ import static com.wd.information.apis.StringUntils.object_status;
  * @author : FangShiKang
  * @date : 2019/02/27.
  * email : fangshikang@outlook.com
- * desc :
+ * desc :资讯模板
  */
 
 @Route(path = "/information/InformationFragment")
@@ -50,22 +57,64 @@ public class InformationFragment extends BaseFragment {
     private View view;
     private Unbinder unbinder;
 
+
+
     @Override
     public int getLayoutId() {
         return R.layout.fragment_information;
     }
 
     @Override
-    protected void initView(Bundle savedInstanceState) {
+    protected void initView(View view) {
 
     }
 
     @Override
     public void initData() {
-            //轮播图
+        unbinder = ButterKnife.bind(this, getActivity());
+
+        //轮播图
         doGetData(Apis.information_XBanner,XBannerBean.class);
+        //兴趣分类的点击事件
+        mMessageClassification.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                initFication();
+            }
+        });
+        //XRecyclerVeiw
+        initRecycler();
+
     }
 
+    /**
+     * XRecyclerView
+     */
+    private void initRecycler() {
+        //设置可刷新
+        mMessageXrecy.setPullRefreshEnabled(true);
+        //设置可加载
+        mMessageXrecy.setLoadingMoreEnabled(true);
+        //设置起始展示为列表格式
+        LinearLayoutManager manager = new LinearLayoutManager(getActivity());
+        manager.setOrientation(OrientationHelper.VERTICAL);
+        mMessageXrecy.setLayoutManager(manager);
+        //添加适配器
+
+    }
+
+    /**
+     * 兴趣分类的点击事件
+     */
+    private void initFication() {
+        Intent intent = new Intent(getActivity(), FicationActivity.class);
+        startActivity(intent);
+    }
+
+    /**
+     * 得到数据
+     * @param object
+     */
     @Override
     protected void netSuccess(Object object) {
         //轮播图
@@ -73,10 +122,8 @@ public class InformationFragment extends BaseFragment {
             final List<String> bannerList=new ArrayList<>();
             List<String> bannerTitle=new ArrayList<>();
             XBannerBean xBannerBean=(XBannerBean)object;
-            Log.i("TAG","玩儿法规和刚发的"+xBannerBean);
             //请求成功
             if (xBannerBean.getStatus().equals(object_status)){
-                Log.i("TAG","电饭煲");
                 List<XBannerBean.ResultBean> result = xBannerBean.getResult();
                 int size = result.size();
                 for (int i = 0; i <size ; i++) {
@@ -91,7 +138,10 @@ public class InformationFragment extends BaseFragment {
                         Glide.with(getActivity()).load(bannerList.get(position)).into((ImageView) view);
                     }
                 });
-                mMessageXbanner.setPageTransformer(Transformer.Zoom);  //本页刚左移，下页就在后面
+              //左右间距
+              mMessageXbanner.setViewPagerMargin(10);
+                //横向移动
+                mMessageXbanner.setPageTransformer(Transformer.Default);
                 mMessageXbanner.setPageChangeDuration(0);
 
             }else {
@@ -100,15 +150,27 @@ public class InformationFragment extends BaseFragment {
         }
     }
 
+    /**
+     * 出错
+     * @param s
+     */
     @Override
     protected void netFailed(Object s) {
-        ToastUtil.showToast(getActivity(),object_error+s);
+       ToastUtil.showToast(getActivity(),StringUntils.object_error+s);
     }
-
 
     @Override
-    public void onDestroyView() {
-        super.onDestroyView();
+    public void onResume() {
+        super.onResume();
+        unbinder = ButterKnife.bind(this, getActivity());
+        mMessageXbanner.startAutoPlay();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        mMessageXbanner.stopAutoPlay();
         unbinder.unbind();
     }
+
 }

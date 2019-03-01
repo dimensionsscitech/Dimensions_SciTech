@@ -1,4 +1,6 @@
 <resources>
     <string name="app_name">Information</string>
     <string name="message_title">资讯</string>
+    <string name="fication_title">选择兴趣分类</string>
+    <string name="fication_subtitle">让我们更懂你</string>
 </resources>

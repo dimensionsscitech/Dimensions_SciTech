@@ -73,8 +73,8 @@ public class RetrofitUtil {
         }
 
         //拦截器
-        /*HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
-        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);*/
+        HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
+        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
 
         OkHttpClient mClient = new OkHttpClient.Builder()
                 //读取超时
@@ -85,7 +85,7 @@ public class RetrofitUtil {
                 //写超时
                 .writeTimeout(10, TimeUnit.SECONDS)
                 //添加拦截器
-                .addInterceptor(new CustomIntercept())//添加自定义拦截器,header头参注入
+                .addInterceptor(interceptor)//添加自定义拦截器,header头参注入
                 .sslSocketFactory(sc.getSocketFactory(), (X509TrustManager) tm)
                 .hostnameVerifier(hostnameVerifier)
                 .build();
